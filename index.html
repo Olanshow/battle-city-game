@@ -17,9 +17,9 @@
     const { Loader } = GameEngine;
     const loader = new Loader;
 
-    loader.addImage('logo', '/static/battle-city-logo.png');
-    loader.addImage('tangLogo', '/static/tank-anim.gif');
-    loader.addJson('persone', '/static/person.json');
+    loader.addImage('logo', 'static/battle-city-logo.png');
+    loader.addImage('tangLogo', 'static/tank-anim.gif');
+    loader.addJson('persone', 'static/person.json');
 
     loader.load(() => {
       let app = document.querySelector('.app');
