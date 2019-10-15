@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="style.css">
+  <title>Battle City</title>
+</head>
+<body>
+
+  <div class="app"></div>
+
+  <script src="engine/Loader.js"></script>
+  <script>
+
+    const { Loader } = GameEngine;
+    const loader = new Loader;
+
+    loader.addImage('logo', '/static/battle-city-logo.png');
+    loader.addImage('tangLogo', '/static/tank-anim.gif');
+    loader.addJson('persone', '/static/person.json');
+
+    loader.load(() => {
+      let app = document.querySelector('.app');
+
+      let wrapp = document.createElement('div');
+      wrapp.className = 'wrap';
+      let logo = document.createElement('div');
+      logo.className = 'hero-logo';
+      let logoImg = loader.resourses.images.logo;
+      logoImg.className = 'hero-logo__img';
+
+      let tankImgWrap = document.createElement('div');
+      tankImgWrap.className = 'tank'
+      let tankImg = loader.resourses.images.tangLogo;
+      tankImg.className = 'tank__img'
+      tankImgWrap.append(tankImg);
+      logo.append(logoImg);
+      wrapp.append(logo, tankImgWrap);
+
+      app.append(wrapp);
+
+    })
+  </script>
+</body>
+</html>

@@ -1,0 +1,45 @@
+body {
+  padding: 0;
+  margin: 0;
+  background-color: #101010;
+  overflow: hidden;
+}
+
+.wrap {
+  margin: 0 auto;
+  max-width: 1070px;
+}
+
+.hero-logo {
+  max-width: 600px;
+  margin: 150px auto 150px;
+}
+
+.hero-logo__img {
+  width: 100%;
+}
+
+.tank {
+  display: flex;
+  justify-content: center;
+}
+
+.tank__img {
+  width: 400px;
+  animation: tank-anim 5s infinite ease-in-out;
+}
+
+@keyframes tank-anim {
+  0% {
+    transform: translateX(300%)
+  }
+  40% {
+    transform: translateX(0)
+  }
+  60% {
+    transform: translateX(0)
+  }
+  100% {
+    transform: translateX(-300%)
+  }
+}
