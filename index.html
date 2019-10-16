@@ -20,6 +20,7 @@
     loader.addImage('logo', 'static/battle-city-logo.png');
     loader.addImage('tangLogo', 'static/tank-anim.gif');
     loader.addJson('persone', 'static/person.json');
+    loader.addJson('level', 'static/level.json');
 
     loader.load(() => {
       let app = document.querySelector('.app');
@@ -40,6 +41,9 @@
       wrapp.append(logo, tankImgWrap);
 
       app.append(wrapp);
+
+      console.log(loader.resourses.jsons.persone);
+      console.log(loader.resourses.jsons.level);
 
     })
   </script>

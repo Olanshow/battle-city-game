@@ -1,0 +1,17 @@
+[
+  {
+    "id": 1,
+    "name": "level 1",
+    "complexity": "easy"
+  },
+  {
+    "id": 2,
+    "name": "level 2",
+    "complexity": "easy"
+  },
+  {
+    "id": 3,
+    "name": "level 3",
+    "complexity": "medium"
+  }
+]
