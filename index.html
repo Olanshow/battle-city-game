@@ -12,39 +12,60 @@
   <div class="app"></div>
 
   <script src="engine/Loader.js"></script>
-  <script>
+  <script src="engine/Renderer.js"></script>
+  <script src="engine/Sprite.js"></script>
+  <script src="engine/Container.js"></script>
 
-    const { Loader } = GameEngine;
-    const loader = new Loader;
+  <script>
+    let sprite = null;
+    let spriteLogo = null;
+
+    const { Loader, Renderer, Sprite } = GameEngine;
+    const loader = new Loader();
+    const renderer = new Renderer({
+      width: 900,
+      height: 500,
+      background: '#222',
+
+      update(timestamp) {
+        if(!sprite && !spriteLogo)
+          return;
+
+        sprite.y = renderer.canvas.height;
+        sprite.x = renderer.canvas.width / 2 + 620 * Math.sin(timestamp / 700);
+
+        spriteLogo.setScale( 0.9 + Math.sin(timestamp / 1000));
+        spriteLogo.x = renderer.canvas.width / 2 + 400 * Math.cos(timestamp / 300);
+        spriteLogo.y = renderer.canvas.height / 2 + 100 * Math.sin(timestamp / 600);
+      },
+    });
+
+    document.body.append(renderer.canvas)
 
     loader.addImage('logo', 'static/battle-city-logo.png');
-    loader.addImage('tangLogo', 'static/tank-anim.gif');
+    loader.addImage('tankLogo', 'static/tank-logo.png');
     loader.addJson('persone', 'static/person.json');
     loader.addJson('level', 'static/level.json');
 
     loader.load(() => {
-      let app = document.querySelector('.app');
+      sprite = new Sprite(loader.getImage('tankLogo'), {
+        x: renderer.canvas.width / 2,
+        y: renderer.canvas.height / 2,
+        anchorX: 0.5,
+        anchorY: 1,
+        scale: 0.25,
+      });
 
-      let wrapp = document.createElement('div');
-      wrapp.className = 'wrap';
-      let logo = document.createElement('div');
-      logo.className = 'hero-logo';
-      let logoImg = loader.resourses.images.logo;
-      logoImg.className = 'hero-logo__img';
+      spriteLogo = new Sprite(loader.getImage('logo'), {
+        x: renderer.canvas.width / 2,
+        y: renderer.canvas.height / 2,
+        anchorX: 0.5,
+        anchorY: 0.5,
+        scale: 0.25,
+      });
 
-      let tankImgWrap = document.createElement('div');
-      tankImgWrap.className = 'tank'
-      let tankImg = loader.resourses.images.tangLogo;
-      tankImg.className = 'tank__img'
-      tankImgWrap.append(tankImg);
-      logo.append(logoImg);
-      wrapp.append(logo, tankImgWrap);
-
-      app.append(wrapp);
-
-      console.log(loader.resourses.jsons.persone);
-      console.log(loader.resourses.jsons.level);
-
+      renderer.stage.add(sprite);
+      renderer.stage.add(spriteLogo);
     })
   </script>
 </body>

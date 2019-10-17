@@ -22,11 +22,19 @@
       })
     }
 
+    getImage(name) {
+      return this.resourses.images[name];
+    }
+
     addJson(name, url) {
       this.loadOrder.jsons.push({
         name,
         url,
       })
+    }
+
+    getJson(name) {
+      return this.resourses.jsons[name];
     }
 
     load(callback) {
